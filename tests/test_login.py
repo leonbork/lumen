@@ -33,7 +33,7 @@ class TestLogin(BaseTest):
 
         with allure.step(f"Attempting login with invalid user: {TestData.INVALID_USER['email']}"):
             self.login_page.login(TestData.INVALID_USER["email"], TestData.INVALID_USER["password"])
-            assert self.login_page.is_element_displayed(self.login_page.LOGIN_ERROR_MESSAGE), \
+            assert self.login_page.is_displayed_by_key("Login error message"), \
                 "Login error message was not displayed for invalid credentials."
             allure.attach(self.login_page.get_error_message(), name="Login Error Message", attachment_type=allure.attachment_type.TEXT)
             assert "Invalid credentials" in self.login_page.get_error_message()
@@ -52,7 +52,7 @@ class TestLogin(BaseTest):
 
         with allure.step(f"Attempting login with another invalid user: {TestData.ANOTHER_INVALID_USER['email']}"):
             self.login_page.login(TestData.ANOTHER_INVALID_USER["email"], TestData.ANOTHER_INVALID_USER["password"])
-            assert self.login_page.is_element_displayed(self.login_page.LOGIN_ERROR_MESSAGE), \
+            assert self.login_page.is_displayed_by_key("Login error message"), \
                 "Login error message was not displayed for another invalid user."
             allure.attach(self.login_page.get_error_message(), name="Login Error Message", attachment_type=allure.attachment_type.TEXT)
             assert "Wrong email or password" in self.login_page.get_error_message()
