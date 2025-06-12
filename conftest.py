@@ -5,21 +5,17 @@ import os
 from datetime import datetime
 import allure
 
-# Optional: Load environment variables from .env file
-# from dotenv import load_dotenv
-# load_dotenv()
-
 @pytest.fixture(scope="session")
 def appium_driver():
     """
-    Fixture to set up and tear down the Appium driver.
+    Fixture to set up and tear down the Appium Flutter Driver.
     """
     # Get Appium server URL from environment variable or use default
     appium_server_url = os.getenv("APPIUM_SERVER_URL", "http://127.0.0.1:4723")
 
     options = AppiumOptions()
     options.set_capability("platformName", "Android")
-    options.set_capability("automationName", "UiAutomator2")
+    options.set_capability("automationName", "flutter")
     options.set_capability("deviceName", "emulator-5554")  # Replace with your device name or emulator ID
     options.set_capability("appPackage", "com.example.mycounter.mycounter")
     options.set_capability("appActivity", ".MainActivity")
